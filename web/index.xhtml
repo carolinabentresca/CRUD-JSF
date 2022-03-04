@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Menú</title>
+    </h:head>
+    <h:body style="background: #333333;color: #ffffff;font-family: cursive">
+        <br/> 
+        <center>  
+            <h:form>  
+                <h:panelGrid columns="2" > 
+                    <h:outputLabel value="Código" />
+                    <h:inputText value="#{alumnoBean.alumno.id}" required="true" requiredMessage="Código Campo Obligatorio" style="font-size: 18px;font-family: cursive"/>  
+                    <h:outputLabel value="Nombre" />
+                    <h:inputText value="#{alumnoBean.alumno.nombre}" required="true" requiredMessage="Nombre Campo Obligatorio" style="font-size: 18px;font-family: cursive"/>  
+                    <h:outputLabel value="Apellido"  />
+                    <h:inputText value="#{alumnoBean.alumno.apellido}" required="true" requiredMessage="Apellido Campo Obligatorio" style="font-size: 18px;font-family: cursive"/>  
+                    <h:outputLabel value="Edad"  />
+                    <h:inputText value="#{alumnoBean.alumno.edad}" required="true" requiredMessage="Edad Campo Obligatorio" style="font-size: 18px;font-family: cursive" /> 
+                    <h:outputLabel value="Email" />
+                    <h:inputText value="#{alumnoBean.alumno.email}" required="true" requiredMessage="Email Campo Obligatorio" style="font-size: 18px;font-family: cursive"/>  
+                </h:panelGrid> 
+                <br/>
+                <h:commandButton value="Registrar" actionListener="#{alumnoBean.registrar()}"  style="margin-left: 12px;font-family: cursive;background: palevioletred;color: #333333;font-size: 14px;width: 120px"></h:commandButton>           
+
+                <h:commandButton value="Editar" actionListener="#{alumnoBean.editar()}"  style="margin-left: 12px;font-family: cursive;background: palevioletred;color: #333333;font-size: 14px;width: 120px"></h:commandButton>          
+                <br/><br/><br/> 
+                <h:panelGrid> 
+                    <h:commandLink value="Actualizar" actionListener="#{alumnoBean.mostrar()}"  style="font-family: cursive;color: palevioletred;font-size: 16px;width: 120px"></h:commandLink>          
+
+                    <h:dataTable value="#{alumnoBean.alumnos}" var="alu" border="1" style="width: 500px" rendered="#{alumnoBean.alumnos.size()>0}">
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Código" />
+                            </f:facet>
+                            <h:outputText value="#{alu.id}" />
+                        </h:column>  
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Nombre" />
+                            </f:facet>
+                            <h:outputText value="#{alu.nombre}" />
+                        </h:column>  
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Apellido" />
+                            </f:facet>
+                            <h:outputText value="#{alu.apellido}" />
+                        </h:column> 
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Edad" />
+                            </f:facet>
+                            <h:outputText value="#{alu.edad}" />
+                        </h:column> 
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Email" />
+                            </f:facet>
+                            <h:outputText value="#{alu.email}" />
+                        </h:column> 
+                        <h:column> 
+                            <f:facet name="header">
+                                <h:outputText value="Acciones" />
+                            </f:facet>
+                            <h:commandButton action="#{alumnoBean.eliminar(alu.id)}" value="Eliminar" style="font-size: 16px;font-family: cursive;background: palevioletred;color: #333333"/>
+                        </h:column> 
+                    </h:dataTable>
+                </h:panelGrid> 
+            </h:form>
+        </center> 
+    </h:body>
+</html>
+
